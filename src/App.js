@@ -14,11 +14,13 @@ import "./App.css";
 
 // for moive rental app
 class App extends Component {
-  state = {};
+  state = {
+    user: null,
+  };
 
   componentDidMount() {
     const user = auth.getCurrentUser();
-    this.setState(user);
+    this.setState({ user });
   }
 
   render() {

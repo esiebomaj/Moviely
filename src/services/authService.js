@@ -4,8 +4,11 @@ import Logout from "./../components/logout";
 import jwtDecode from "jwt-decode";
 
 const tokenKey = "token";
+
+axios.defaults.headers.common["x-auth-token"] = localStorage.getItem(tokenKey);
+
 export async function login(email, password) {
-  const { jwt } = await axios.post(`${config.apiEndpoint}/auth`, {
+  const { data: jwt } = await axios.post(`${config.apiEndpoint}/auth`, {
     email,
     password,
   });
@@ -31,7 +34,7 @@ export const getCurrentUser = () => {
 };
 
 export default {
-  Logout,
+  logout,
   login,
   getCurrentUser,
   loginWithJWT,
