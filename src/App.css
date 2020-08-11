@@ -36,3 +36,26 @@
     transform: rotate(360deg);
   }
 }
+
+.like-container {
+  display: inline;
+  font-size: 2em;
+  cursor: pointer;
+}
+
+.like-container:hover {
+  padding: 0.1em;
+  color: red;
+  transition: all 0.3s ease-in-out;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.content {
+  padding: 2em 2em;
+}
+
+.main {
+}
