@@ -120,6 +120,7 @@ class ListMovies extends Component {
   };
 
   render() {
+    const { user } = this.props;
     const { sorted_movies, categorized_movies } = this.getData();
     return (
       <React.Fragment>
@@ -132,9 +133,12 @@ class ListMovies extends Component {
             />
           </div>
           <div className="col">
-            <Link className="btn btn-primary m-2" to="/movies/movie-form">
-              New Movie
-            </Link>
+            {user && (
+              <Link className="btn btn-primary m-2" to="/movies/movie-form">
+                New Movie
+              </Link>
+            )}
+
             <MoviesTable
               movies={categorized_movies}
               paginatedMovies={sorted_movies}

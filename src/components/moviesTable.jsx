@@ -3,6 +3,7 @@ import Like from "./common/like";
 import Table from "./common/table";
 import { Link } from "react-router-dom";
 import SeacrForm from "./common/searchForm";
+import auth from "../services/authService";
 
 class MoviesTable extends Component {
   columns = [
@@ -23,18 +24,25 @@ class MoviesTable extends Component {
         <Like onLiked={() => this.props.onLiked(item)} liked={item.liked} />
       ),
     },
-    {
-      key: "delete",
-      content: (item) => (
-        <button
-          onClick={() => this.props.handleDelete(item._id)}
-          className="btn btn-danger"
-        >
-          Delete
-        </button>
-      ),
-    },
   ];
+
+  deleteColumn = {
+    key: "delete",
+    content: (item) => (
+      <button
+        onClick={() => this.props.handleDelete(item._id)}
+        className="btn btn-danger"
+      >
+        Delete
+      </button>
+    ),
+  };
+
+  constructor() {
+    super();
+    const user = auth.getCurrentUser();
+    if (user && user.isAdmin) this.columns.push(this.deleteColumn);
+  }
 
   onSort = (path) => {
     const sortColumn = { ...this.props.sortColumn };

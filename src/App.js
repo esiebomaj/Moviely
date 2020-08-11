@@ -8,6 +8,7 @@ import NotFound from "./components/notFound";
 import MovieForm from "./components/movieForm";
 import LoginForm from "./components/loginForm";
 import RegisterForm from "./components/registerForm";
+import ProtectedRoute from "./components/common/protectedRoute";
 import Logout from "./components/logout";
 import auth from "./services/authService";
 import "./App.css";
@@ -28,20 +29,26 @@ class App extends Component {
       <div className="App">
         <main className="main">
           <NavBar user={this.state.user}></NavBar>
-          <div className="content">
+          <div className="container mt-5">
             <Switch>
               <Route path="/customers" component={Customers} />
               <Route path="/rentals" component={Rentals} />
               <Route path="/login" component={LoginForm} />
               <Route path="/logout" component={Logout} />
               <Route path="/register" component={RegisterForm} />
-              <Route
+              <ProtectedRoute
                 path="/movies/movie-form/:id?"
-                render={(props) => <MovieForm {...props} />}
+                component={MovieForm}
               />
               <Redirect from="/movies" to="/" />
               <Route path="/not-found" component={NotFound} />
-              <Route path="/" exact render={() => <ListMovies></ListMovies>} />
+              <Route
+                path="/"
+                exact
+                render={(props) => (
+                  <ListMovies {...props} user={this.state.user}></ListMovies>
+                )}
+              />
               <Redirect to="/not-found" />
             </Switch>
           </div>

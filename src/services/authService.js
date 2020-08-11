@@ -1,6 +1,5 @@
 import config from "../config.json";
 import axios from "axios";
-import Logout from "./../components/logout";
 import jwtDecode from "jwt-decode";
 
 const tokenKey = "token";
