@@ -7,7 +7,7 @@ class ListGroup extends Component {
       <div className="list-group">
         {this.props.categories.map((category) => (
           <a
-            key={category._id}
+            key={category.name}
             onClick={() => this.props.onCategorize(category.name)}
             className={
               this.props.currentCategory.name === category.name

@@ -21,14 +21,15 @@ class TableHead extends Component {
           {this.props.columns.map((column) =>
             column.label ? (
               <th
+                key={column.path}
                 className="clickable"
-                onClick={() => this.props.onSort(column.label)}
+                onClick={() => this.props.onSort(column.path)}
                 scope="col"
               >
-                {column.label} {this.renderSortIcon(column.label)}
+                {column.label} {this.renderSortIcon(column.path)}
               </th>
             ) : (
-              <th></th>
+              <th key={column.key}></th>
             )
           )}
         </tr>

@@ -11,7 +11,9 @@ class TableBody extends Component {
               column.content ? (
                 <td>{column.content(item)}</td>
               ) : (
-                <td>{_.get(item, column.path)}</td>
+                <td key={_.get(item, column.path)}>
+                  {_.get(item, column.path)}
+                </td>
               )
             )}
           </tr>

@@ -1,5 +1,6 @@
 import moviesService from "../services/movieService";
 import getGenres from "../services/genreService";
+import logService from "../services/logService";
 import React, { Component } from "react";
 import Pagination from "./common/pagination";
 import _ from "lodash";
@@ -15,7 +16,7 @@ class ListMovies extends Component {
     currentPage: 1,
     genres: [],
     currentGenre: "",
-    sortColumn: { path: "Title", order: "asc" },
+    sortColumn: { path: "title", order: "asc" },
     searchQuery: "",
   };
 
@@ -40,8 +41,9 @@ class ListMovies extends Component {
       await moviesService.deleteMovie(movieId);
     } catch (error) {
       if (error.response && error.response.status === 404) {
-        console.log("this movie has already been deleted");
+        logService.log("this movie has already been deleted");
       }
+      this.setState({ movies: original_movies });
     }
   };
 

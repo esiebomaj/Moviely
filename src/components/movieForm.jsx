@@ -2,9 +2,7 @@ import React from "react";
 import Form from "./common/form";
 import Joi from "joi-browser";
 import getGenres from "../services/genreService";
-import { saveMovie, getMovie } from "./../services/fakeMovieService";
 import moviesService from "../services/movieService";
-import { min } from "lodash";
 
 class MovieForm extends Form {
   state = {

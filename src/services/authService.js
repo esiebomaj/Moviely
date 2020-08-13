@@ -1,13 +1,13 @@
-import config from "../config.json";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 
 const tokenKey = "token";
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
 axios.defaults.headers.common["x-auth-token"] = localStorage.getItem(tokenKey);
 
 export async function login(email, password) {
-  const { data: jwt } = await axios.post(`${config.apiEndpoint}/auth`, {
+  const { data: jwt } = await axios.post(`/auth`, {
     email,
     password,
   });
